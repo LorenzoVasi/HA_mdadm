@@ -1,0 +1,9 @@
+{
+    "domain": "mdadm_state",
+    "name": "MDADM Raid Status",
+    "documentation": "https://github.com/LorenzoVasi/HA_mdadm",
+    "dependencies": [],
+    "codeowners": [],
+    "requirements": ["mdstat==1.0.4"],
+    "iot_class": "cloud_polling"
+}
