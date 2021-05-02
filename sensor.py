@@ -8,7 +8,7 @@ from types import SimpleNamespace
 def setup_platform(hass, config, add_entities, discovery_info=None):
     device = config["device"]
 
-    # Check if the device is a RAID device, and check if it exist
+    # Check if the device is a RAID device, and check if it exist, after that make the entity
 
     add_entities([mdadm()])
 
