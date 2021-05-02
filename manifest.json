@@ -4,6 +4,6 @@
     "documentation": "https://github.com/LorenzoVasi/HA_mdadm",
     "dependencies": [],
     "codeowners": [],
-    "requirements": ["mdstat==1.0.4"],
+    "requirements": ["mdstat==1.0.4", "simplejson==3.17.2"],
     "iot_class": "local_push"
 }

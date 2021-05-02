@@ -1,41 +1,43 @@
-DOMAIN = "mdadm_state"
+from homeassistant.helpers.entity import Entity 
+import mdstat 
+import simplejson as json 
+from types import SimpleNamespace
 
-def setup(hass, config):
-    from homeassistant.helpers.entity import Entity # Importo libreria per creare entita
-    import mdstat # Importo libreria MDSTAT installata da manifest.json
-    import json # Importo libreria JSON per leggere dati JSON
-    from types import SimpleNamespace # Da vedere se disponibile su Home Assistant Core, altrimenti da importare 
-
-    return True # Inizializzazione effettuata e completata
-
+# Now I'm studing how make it in C++, because I don't know very good Python :)
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
+    device = config["device"]
 
-    device = config[CONF_DEVICE]    
-    
-    add_entities([mdadm_state()]) # Creo nuova entita chiamata sensor.mdadm_state
+    # Check if the device is a RAID device, and check if it exist
+
+    add_entities([mdadm()])
 
 
-class mdadm_state(Entity):
+class mdadm(Entity):
+
     def __init__(self):
-        self._state = None # Inizializzazione del sensore
+        self._state = None
 
     @property
     def name(self):
-        return 'MDADM Raid Status' # Ritorna il nome del sensore 
-    
+        return 'MDADM Raid Status'
+
     @property
     def state(self):
-        return self._state # Ritorna lo stato del sensore
+        return self._state
 
     @property
+    def unit_of_measurement(self):
+        return None
+
     def update(self):
-        # Qui devo eseguire il codice da decifrare in JSON
 
-        data = json.dumps(mdstat.parse()) # Prendo il codice ricevuto da mdstat e lo trasformo in vero json
-        x = json.loads(data, object_hook=lambda d: SimpleNamespace(**d)) # Trasformo il risultato JSON in una classe
-        
-        
+        # Take value of device
+        # Move into classes of the x variable
+        # Check and return the outputs of the variable with state and attributes
+
+        # This is a check if it works
+        mdstat_status = mdstat.parse()
+        data = json.dumps(mdstat_status)
+        x = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         self._state = x.devices.md0.active
-
-    
