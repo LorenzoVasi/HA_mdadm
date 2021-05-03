@@ -20,3 +20,5 @@ binary_sensor:
 ## Contributions
 `mdstat` (Python library)
 https://pypi.org/project/mdstat/
+
+(There are other contributions, when I finished more or less the components, insert all here :))
