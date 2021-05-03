@@ -6,7 +6,7 @@ Hi, this is my first project for Home Assistant. I want make a custom component 
 
 ## How to install
 1. Download the repository
-2. Copy the 'mdadm_state' folder into custom_components folder (if it doesn't exist, make it) 
+2. Copy 'mdadm_state' folder into custom_components folder (if it doesn't exist, make it) 
 3. Edit `configuration.yaml`:
 
 ### YAML Configuration
