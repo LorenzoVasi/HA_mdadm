@@ -4,7 +4,12 @@ Hi, this is my first project for Home Assistant. I want make a custom component 
 ## Requirements
 `mdadm` installed in the base machine  
 
-## YAML Configuration
+## How to install
+1. Download the repository
+2. Copy the mdadm_state folder into custom_components folder (if it doesn't exist, make it) 
+3. Edit `configuration.yaml`:
+
+### YAML Configuration
 ```yaml
 # Example configuration.yaml entry
 binary_sensor:
