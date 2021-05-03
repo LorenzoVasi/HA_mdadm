@@ -32,12 +32,15 @@ class mdadm(Entity):
 
     def update(self):
 
-        # Take value of device
-        # Move into classes of the x variable
-        # Check and return the outputs of the variable with state and attributes
-
-        # This is a check if it works
         mdstat_status = mdstat.parse()
         data = json.dumps(mdstat_status)
         x = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        self._state = x.devices.md0.active
+
+        device = 'md0' # Device insert into configuration.yaml (in this case is md0)
+        device_config = getattr(x.devices, device)
+
+
+
+        self._attribute1 = device_config.read_only
+
+        self._state = device_config.active
