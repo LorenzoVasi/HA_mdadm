@@ -1,66 +1,69 @@
-from homeassistant.helpers.entity import Entity 
-import mdstat 
-import simplejson as json 
-from types import SimpleNamespace
+import logging # Home Assistant LOG
+from homeassistant.helpers.entity import Entity # Home Assistant Entity
+import mdstat # MDSTAT for import data from MDADM
+import simplejson as json # JSON
+from types import SimpleNamespace # Make object
+
+
+_LOGGER = logging.getLogger(__name__) # Global Variable _ Logger
+
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
-
-    # device = config["device"] // This is the next step, load from configuration.yaml
-    add_entities([mdadm()])
+    device = config["device"]
+    add_entities([mdadm(device)])
+    return True
 
 
 class mdadm(Entity):
 
-    def __init__(self): # __init__
+    def __init__(self, device): # setup of entity and self object
+        self._device = device
         self._state = None
-        self._read_only = None
-        self._resync = None
+        self._personality = None
+        self._status_disks_not_working = None
+        self._status_synced = None
+        self._disks_number = None
 
     @property
-    def name(self): # Name of Entity 
-        return 'MDADM Raid Status'
+    def name(self): # entity name
+        name = 'RAID status /dev/'+self._device 
+        return name
 
-    @property # This is the function of state (return as state)
+    @property # entity status
     def state(self):
         return self._state
 
     @property
-    def device_class(self): # This is the device class of the device
-        return 'connectivity'
-
-    @property
-    def unit_of_measurement(self): # Unit of measurament (in this case it isn't needed)
-        return None
-
-    @property
-    def device_state_attributes(self): # This is the list of attributes
+    def device_state_attributes(self): # Attribute list
         attributes = {
-            "read_only": self._read_only,
-            "resync": self._resync
+            "raid-type": self._personality,
+            "disks_number": self._disks_number,
+            "disks_not_working": self._status_disks_not_working,
+            "sync": self._status_synced
         }
         return attributes
-
+        
     def update(self):
 
-        # Take data from mdstat and load it on an object called x 
-        mdstat_status = mdstat.parse()
-        data = json.dumps(mdstat_status)
-        x = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        # Loading data from MDADM into x class 
+        x = json.loads(json.dumps(mdstat.parse()), object_hook=lambda d: SimpleNamespace(**d))
+        device_config = getattr(x.devices, self._device)
 
-
-        device = 'md0' # This is a debug device, not loaded by configuration.yaml
-
-
-        device_config = getattr(x.devices, device) # Take devices that I want to view (conf.yaml)
-
-        # This is the status of RAID Device
+        # Status
         if device_config.active == True:
-            tmp = 'on'
+            self._state = 'on'
         else:
-            tmp = 'off'
-        self._state = tmp
+            self._state = 'off'
 
+        # Sync attribute
+        for tmp in device_config.status.synced:
+            if tmp == False:
+                self._status_synced = False
+                break
+            else:
+                self._status_synced = True
 
-        # There are other things loaded by mdstat and insert into the entity as attributes
-        self._read_only = device_config.read_only
-        self._resync = device_config.resync
+        # Other attributes
+        self._personality = device_config.personality
+        self._status_disks_not_working = device_config.status.raid_disks - device_config.status.non_degraded_disks
+        self._disks_number = device_config.status.raid_disks

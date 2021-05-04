@@ -1,1 +1,1 @@
-"""MDADM Raid Status"""
+""" I want to thank all the Home Assistant Community Team for the hard work! <3 """
