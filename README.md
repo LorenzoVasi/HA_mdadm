@@ -13,7 +13,7 @@ HACS (**now not available**): Search `mdadm_state` into Integration
 Without HACS: 
 
 1. Download the repository
-2. Copy 'mdadm_state' folder into 'custom_components' folder (if it doesn't exist, create it)`
+2. Copy 'mdadm_state' folder into 'custom_components' folder (if it doesn't exist, create it)
 
 ## Setup YAML Configuration
 
