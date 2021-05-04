@@ -1,1 +1,1 @@
-""" I want to thank all the Home Assistant Community Team for the hard work! <3 """
+""" I want to thank all the Home Assistant Community for the hard work! <3 """
