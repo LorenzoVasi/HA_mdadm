@@ -2,6 +2,8 @@
     "domain": "mdadm_state",
     "name": "MDADM Raid Status",
     "documentation": "https://github.com/LorenzoVasi/HA_mdadm",
+    "issue_tracker": "https://github.com/LorenzoVasi/HA_mdadm/issues",
+    "codeowners": ["@LorenzoVasi"],
     "dependencies": [],
     "codeowners": [],
     "requirements": ["mdstat==1.0.4", "simplejson==3.17.2"],
