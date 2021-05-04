@@ -20,8 +20,8 @@ Without HACS:
 ```yaml
 # Example configuration.yaml entry
 binary_sensor:
-	- platform: mdadm_state
-	  device: devicename
+  - platform: mdadm_state
+    device: devicename
 ```
 
 ### Configuration Variables
