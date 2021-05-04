@@ -8,7 +8,7 @@ This is a custom component that is used to monitor the status of a RAID device c
 
 ## How to install
 
-HACS (**now not available**): Search `mdadm_state` into Integration 
+HACS (**now not available**): Search `RAID Status - MDADM` into Integration 
 
 Without HACS: 
 
