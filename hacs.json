@@ -1,0 +1,5 @@
+{
+    "name": "RAID Status - MDADM",
+    "render_readme": true,
+    "domains": ["binary_sensor"]
+}
