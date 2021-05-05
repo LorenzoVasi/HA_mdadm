@@ -1,6 +1,6 @@
 # RAID Status - Custom Component - Home Assistant
 
-This is a custom component that is used to monitor the status of a RAID device created with `mdadm`
+This is a custom component that can be used to monitor the status of a RAID device created with `mdadm`
 
  ## Requirements
 
@@ -8,12 +8,14 @@ This is a custom component that is used to monitor the status of a RAID device c
 
 ## How to install
 
-HACS (**now not available**): Search `RAID Status - MDADM` into Integration 
+HACS:
+
+(**not yet available**): Search `RAID Status - MDADM` into Integration 
 
 Without HACS: 
 
 1. Download the repository
-2. Copy folder 'custom_components/mdadm_state' folder into the configuration folder
+2. Copy the 'custom_components/mdadm_state' folder into the configuration folder
 
 ## Setup YAML Configuration
 
