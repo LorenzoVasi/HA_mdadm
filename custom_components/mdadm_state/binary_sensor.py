@@ -75,7 +75,9 @@ class mdadm(Entity):
         self._personality = device_config.personality
         self._status_disks_not_working = device_config.status.raid_disks - device_config.status.non_degraded_disks
         self._disks_number = device_config.status.raid_disks
-        self._resync_operation = device_config.resync.operation
-        self._resync_progress = device_config.resync.progress
-        self._resync_finish = device_config.resync.finish
-        self._resync_speed = device_config.resync.speed
+
+        if device_config.resync != None:
+            self._resync_operation = device_config.resync.operation
+            self._resync_progress = device_config.resync.progress
+            self._resync_finish = device_config.resync.finish
+            self._resync_speed = device_config.resync.speed
