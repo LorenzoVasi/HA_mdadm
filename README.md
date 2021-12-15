@@ -19,7 +19,7 @@ services:
     volumes:
       - /PATH_TO_YOUR_CONFIG:/config
       - /etc/localtime:/etc/localtime:ro
-      -/proc/mdstat:/proc/mdstat <-- ADD this line
+      - /proc/mdstat:/proc/mdstat <-- ADD this line
     restart: unless-stopped
     privileged: true
     network_mode: host
