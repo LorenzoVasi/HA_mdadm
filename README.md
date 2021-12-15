@@ -4,7 +4,26 @@ This is a custom component that can be used to monitor the status of a RAID devi
 
  ## Requirements
 
-`mdadm` installed into local server
+- `mdadm` installed into local server
+
+- If you have installed Home Assistant Core with Docker, you must share `/proc/mdstat` directory
+
+### Example Docker Compose
+
+```
+version: '3'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - /PATH_TO_YOUR_CONFIG:/config
+      - /etc/localtime:/etc/localtime:ro
+      -/proc/mdstat:/proc/mdstat <-- ADD this line
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+```
 
 ## How to install
 
@@ -16,6 +35,7 @@ Without HACS:
 
 1. Download the repository
 2. Copy the 'custom_components/mdadm_state' folder into the configuration folder
+
 
 ## Setup YAML Configuration
 
