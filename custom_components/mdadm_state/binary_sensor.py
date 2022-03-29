@@ -38,7 +38,7 @@ class mdadm(Entity):
         return self._state
 
     @property
-    def device_state_attributes(self): # Attribute list
+    def extra_state_attributes(self): # Attribute list
         attributes = {
             "raid-type": self._personality,
             "disks_number": self._disks_number,
