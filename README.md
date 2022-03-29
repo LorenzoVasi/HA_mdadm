@@ -5,7 +5,7 @@ This is a custom component that can be used to monitor the status of a RAID devi
  ## Requirements
 
 - `mdadm` installed into local server
-- 
+
 ## How to install
 
 HACS:
