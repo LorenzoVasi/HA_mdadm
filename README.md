@@ -10,7 +10,8 @@ This is a custom component that can be used to monitor the status of a RAID devi
 
 HACS:
 
-Search "RAID Status - MDADM" on HACS Integrations 
+1. Go to HACS -> 3dots -> Custom Repositories -> Copy repository link and set "Integration" as Category
+2. Search "RAID Status - MDADM" on HACS Integrations 
 
 Without HACS: 
 
