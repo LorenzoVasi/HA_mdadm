@@ -81,3 +81,8 @@ class mdadm(Entity):
             self._resync_progress = device_config.resync.progress
             self._resync_finish = device_config.resync.finish
             self._resync_speed = device_config.resync.speed
+        else:
+            self._resync_operation = None
+            self._resync_progress = None
+            self._resync_finish = None
+            self._resync_speed = None
